@@ -11,8 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/projects")
@@ -31,8 +31,9 @@ public class ProjectResource {
 
     @ApiOperation(value = "Get a specific project", response = List.class)
     @GetMapping("/{idProject}")
-    public ResponseEntity<?> getProject(@PathVariable String idProject){
-        return new ResponseEntity<>("SHOULD GET A PROJECT", HttpStatus.OK);
+    public ResponseEntity<?> getProject(@PathVariable Long idProject){
+        Optional<Project> getOneProject = repository.findById(idProject);
+        return new ResponseEntity<>(getOneProject, HttpStatus.OK);
     }
 
     @ApiOperation(value = "Get a list of projects", response = List.class)
