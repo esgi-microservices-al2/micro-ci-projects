@@ -42,8 +42,9 @@ public class ProjectResource {
 
     @ApiOperation(value = "Get a list of projects", response = List.class)
     @GetMapping("/projects")
-    public ResponseEntity<?> getListOfProjects(){
-        return new ResponseEntity<>("SHOULD GET A LIST OF PROJECT", HttpStatus.OK);
+    public List<Project> getListOfProjects(){
+
+        return repository.findAll();
     }
 
     @ApiOperation(value = "Create a project", response = List.class)
