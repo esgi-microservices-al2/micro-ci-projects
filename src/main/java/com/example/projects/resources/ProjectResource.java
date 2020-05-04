@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/projects")
@@ -32,8 +31,13 @@ public class ProjectResource {
     @ApiOperation(value = "Get a specific project", response = List.class)
     @GetMapping("/{idProject}")
     public ResponseEntity<?> getProject(@PathVariable Long idProject){
-        Optional<Project> getOneProject = repository.findById(idProject);
-        return new ResponseEntity<>(getOneProject, HttpStatus.OK);
+        try {
+            repository.findById(idProject);
+            return new ResponseEntity<>(idProject, HttpStatus.OK);
+        }catch(RuntimeException e){
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>("Project id not found : "+ idProject, HttpStatus.OK);
+        }
     }
 
     @ApiOperation(value = "Get a list of projects", response = List.class)
