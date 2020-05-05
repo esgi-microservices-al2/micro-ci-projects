@@ -1,11 +1,13 @@
 package com.example.projects.resources;
 
 import com.example.projects.DTO.ProjectDTO;
+import com.example.projects.exceptions.ProjectNotFoundException;
 import com.example.projects.models.Project;
 import com.example.projects.repositories.ProjectRepository;
 import com.example.projects.services.ProjectService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/projects")
 @Api(value = "Project Management System")
@@ -20,13 +23,9 @@ public class ProjectResource {
 
 
     @Autowired
-    ProjectRepository repository;
+    private final  ProjectRepository repository;
 
     private final ProjectService projectService;
-
-    public ProjectResource(ProjectService projectService){
-        this.projectService = projectService;
-    }
 
     @ApiOperation(value = "Get a specific project", response = List.class)
     @GetMapping("/{idProject}")
@@ -56,10 +55,23 @@ public class ProjectResource {
     }
 
 
-    @ApiOperation(value = "Update a specific project", response = List.class)
+    //@ApiOperation(value = "Update a specific project", response = List.class)
     @PutMapping("/{idProject}")
-    public ResponseEntity<?> updateProject(@PathVariable String idProject){
-        return new ResponseEntity<>("SHOULD UPDATE A PROJECT", HttpStatus.OK);
+    public ResponseEntity<?> updateProject(@PathVariable Long idProject, @RequestBody Project projectUpdate){
+        try {
+            Project updatedProject = repository.findById(idProject).orElseThrow(() -> new ProjectNotFoundException(idProject));
+            updatedProject.setName(projectUpdate.getName());
+            updatedProject.setOwner(projectUpdate.getOwner());
+            updatedProject.setRunner(projectUpdate.getRunner());
+            updatedProject.setSource(projectUpdate.getSource());
+            updatedProject.setUrl(projectUpdate.getUrl());
+            repository.save(updatedProject);
+
+            return new ResponseEntity<>("Project updated : " + updatedProject, HttpStatus.OK);
+        }catch (RuntimeException e){
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>("Project id not found : " + idProject, HttpStatus.OK);
+        }
     }
 
 
