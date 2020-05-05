@@ -11,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -31,14 +30,21 @@ public class ProjectResource {
 
     @ApiOperation(value = "Get a specific project", response = List.class)
     @GetMapping("/{idProject}")
-    public ResponseEntity<?> getProject(@PathVariable String idProject){
-        return new ResponseEntity<>("SHOULD GET A PROJECT", HttpStatus.OK);
+    public ResponseEntity<?> getProject(@PathVariable Long idProject){
+        try {
+            repository.findById(idProject);
+            return new ResponseEntity<>(idProject, HttpStatus.OK);
+        }catch(RuntimeException e){
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>("Project id not found : "+ idProject, HttpStatus.OK);
+        }
     }
 
     @ApiOperation(value = "Get a list of projects", response = List.class)
     @GetMapping("/projects")
     public ResponseEntity<?> getListOfProjects(){
-        return new ResponseEntity<>("SHOULD GET A LIST OF PROJECT", HttpStatus.OK);
+        List<Project> projects = repository.findAll();
+        return new ResponseEntity<>(projects, HttpStatus.OK);
     }
 
     @ApiOperation(value = "Create a project", response = List.class)
