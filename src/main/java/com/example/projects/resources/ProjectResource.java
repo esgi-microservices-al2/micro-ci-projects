@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
@@ -31,8 +32,13 @@ public class ProjectResource {
     @GetMapping("/{idProject}")
     public ResponseEntity<?> getProject(@PathVariable Long idProject){
         try {
-            repository.findById(idProject);
-            return new ResponseEntity<>(idProject, HttpStatus.OK);
+            Optional<Project> project = repository.findById(idProject);
+            if(project.isPresent()){
+                return new ResponseEntity<>(project, HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+
         }catch(RuntimeException e){
             System.out.println(e.getMessage());
             return new ResponseEntity<>("Project id not found : "+ idProject, HttpStatus.OK);
@@ -63,7 +69,6 @@ public class ProjectResource {
             updatedProject.setName(projectUpdate.getName());
             updatedProject.setOwner(projectUpdate.getOwner());
             updatedProject.setRunner(projectUpdate.getRunner());
-            updatedProject.setSource(projectUpdate.getSource());
             updatedProject.setUrl(projectUpdate.getUrl());
             repository.save(updatedProject);
 

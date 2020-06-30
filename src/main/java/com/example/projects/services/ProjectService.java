@@ -13,12 +13,11 @@ public class ProjectService {
 
     public Project createProject(ProjectDTO projectDTO){
         Project project = new Project();
-        project.setUrl("microci-projects@"+projectDTO.getName());
+        project.setUrl(projectDTO.getUrl());
         project.setOwner(projectDTO.getOwner());
-        project.setSource(projectDTO.getSource());
         project.setName(projectDTO.getName());
         project.set_public(projectDTO.get_public());
-        System.out.println("Created project with name : "+projectDTO.getName());
+        Tools.log(1,"Created project with name : "+projectDTO.getName());
         return project;
     }
 }

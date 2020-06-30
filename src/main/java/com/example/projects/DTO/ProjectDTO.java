@@ -26,7 +26,4 @@ public class ProjectDTO {
 
     @ApiModelProperty(notes = "The ID of the owner")
     private String owner;
-
-    @ApiModelProperty(notes = "Fork source")
-    private String source;
 }

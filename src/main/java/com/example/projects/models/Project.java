@@ -39,8 +39,4 @@ public class Project {
     @ApiModelProperty(notes = "The ID of the owner")
     @Column(name = "owner")
     private String owner;
-
-    @ApiModelProperty(notes = "Fork source")
-    @Column(name = "source")
-    private String source;
 }
