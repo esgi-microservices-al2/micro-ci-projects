@@ -7,8 +7,10 @@
 ## Technologies used
 
 * PostGre SQL
-* Java 11 (Lombok, JPA, JUnit)
+* Java 8 (Lombok, JPA, JUnit)
 * Swagger2
+* Consul Service Discovery
+* Automation of repository cloning
 
 ## Build the project
 

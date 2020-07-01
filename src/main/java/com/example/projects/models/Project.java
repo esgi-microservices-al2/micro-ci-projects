@@ -3,9 +3,13 @@ package com.example.projects.models;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Data
 @Entity
 @Table(name = "projects")
@@ -35,8 +39,4 @@ public class Project {
     @ApiModelProperty(notes = "The ID of the owner")
     @Column(name = "owner")
     private String owner;
-
-    @ApiModelProperty(notes = "Fork source")
-    @Column(name = "source")
-    private String source;
 }
