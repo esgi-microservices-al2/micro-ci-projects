@@ -1,3 +1,22 @@
 version: '3'
 
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: ${DB_USER:-root}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-root}
+      POSTGRES_DB: ${DB_NAME:-microserviceProjet}
+    volumes:
+      - postgres:/data/postgres/project
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+volumes:
+  postgres:
+
+
 # Add your networks/volumes/services for your microservice
