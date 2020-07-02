@@ -2,7 +2,7 @@ version: '3'
 
 services:
   microservice-projet:
-    image: micro-ci-al2/micro-ci-projects
+    image: esgimicroci/al2-projects
     ports:
       - "8080:8080"
     environment:
