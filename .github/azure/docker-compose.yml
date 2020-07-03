@@ -5,9 +5,9 @@ services:
     image: postgres
     network_mode: bridge
     environment:
-      POSTGRES_USER: ${DB_USER:-root}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-root}
-      POSTGRES_DB: ${DB_NAME:-microserviceProjet}
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=microserviceProjet
     volumes:
       - postgres:/data/postgres/project
     ports:
@@ -30,6 +30,8 @@ services:
     volumes:
       - al2projects:/var/projects
     depends_on:
+      - db
+    links:
       - db
 
 volumes:
