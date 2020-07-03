@@ -12,6 +12,8 @@ services:
       CONSUL_HOST: ${CONSUL_HOST}
       CONSUL_TOKEN: ${CONSUL_TOKEN}
       CONSUL_PORT: ${CONSUL_PORT}
+    volumes:
+      - al2projects:/var/projects
 
 
   db:

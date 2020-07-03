@@ -41,7 +41,7 @@ public class ProjectResource {
 
         }catch(RuntimeException e){
             System.out.println(e.getMessage());
-            return new ResponseEntity<>("Project id not found : "+ idProject, HttpStatus.OK);
+            return new ResponseEntity<>("Project id not found : "+ idProject, HttpStatus.NOT_FOUND);
         }
     }
 
