@@ -12,6 +12,8 @@ services:
       CONSUL_HOST: micro-ci.westus2.cloudapp.azure.com
       CONSUL_TOKEN: ab8bdda5-2a4a-1ebf-0383-95ccbebe63b4
       CONSUL_PORT: 40601
+    volumes:
+      - al2projects:/var/projects
 
 
   db:
@@ -27,7 +29,8 @@ services:
     restart: unless-stopped
 
 volumes:
+  al2projects:
+    external: true
   postgres:
-
 
 # Add your networks/volumes/services for your microservice

@@ -61,13 +61,11 @@ public class CloneResource {
         clone.setName(project.getName());
         clone.setUrl(project.getUrl());
 
-        String workingDir = System.getProperty("user.dir");
-        String directoryName = workingDir.concat("/clones");
-        File directory = new File(directoryName);
+        File directory = new File("/var/projects");
         if (!directory.exists()){
             directory.mkdir();
         }
-        File repo = new File(directoryName+"/"+project.getName()+"-"+project.get_id());
+        File repo = new File("/var/projects/"+project.getName()+"-"+project.get_id());
         if(repo.exists()){
             deleteDirectory(repo);
             Tools.log(1, "Removing current repository");
