@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: microservice-projects
   cloud:
     consul:
       host: http://micro-ci.westus2.cloudapp.azure.com
@@ -7,5 +9,4 @@ spring:
         tags: projects-microservice
         health-check-interval: 10s
         health-check-path: /api/v1/health
-      config:
         acl-token: ab8bdda5-2a4a-1ebf-0383-95ccbebe63b4
