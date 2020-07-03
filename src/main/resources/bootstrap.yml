@@ -3,7 +3,7 @@ spring:
     name: microservice-projects
   cloud:
     consul:
-      host: http://micro-ci.westus2.cloudapp.azure.com
+      host: 10.0.0.5
       port: 40601
       discovery:
         tags: projects-microservice
