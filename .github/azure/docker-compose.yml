@@ -24,17 +24,16 @@ services:
         DB_NAME: ${DB_NAME:-microserviceProjet}
         DB_USER: ${DB_USER:-root}
         DB_PASSWORD: ${DB_PASSWORD:-root}
-        CONSUL_HOST: http://micro-ci.westus2.cloudapp.azure.com
-        CONSUL_TOKEN: ab8bdda5-2a4a-1ebf-0383-95ccbebe63b4
-        CONSUL_PORT: 40601
+        CONSUL_HOST: ${CONSUL_HOST}
+        CONSUL_TOKEN: ${CONSUL_TOKEN}
+        CONSUL_PORT: ${CONSUL_PORT}
       volumes:
         - al2projects:/var/projects
       depends_on:
         - db
 
 volumes:
-  al2projects:
-    external: true
   postgres:
+
 
 # Add your networks/volumes/services for your microservice
