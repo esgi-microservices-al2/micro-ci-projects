@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    consul:
+      host: ${CONSUL_HOST:localhost}
+      port: ${CONSUL_PORT:2020}
+      discovery:
+        tags: projects-microservice
+        health-check-interval: 10s
+        health-check-path: /api/v1/health
+      config:
+        acl-token: ${CONSUL_TOKEN}
