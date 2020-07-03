@@ -1,23 +1,9 @@
 version: '3'
 
 services:
-  microservice-projet:
-    image: esgimicroci/al2-projects
-    ports:
-      - "8080:8080"
-    environment:
-      DB_NAME: ${DB_NAME:-microserviceProjet}
-      DB_USER: ${DB_USER:-root}
-      DB_PASSWORD: ${DB_PASSWORD:-root}
-      CONSUL_HOST: ${CONSUL_HOST}
-      CONSUL_TOKEN: ${CONSUL_TOKEN}
-      CONSUL_PORT: ${CONSUL_PORT}
-    volumes:
-      - al2projects:/var/projects
-
-
   db:
     image: postgres
+    network_mode: bridge
     environment:
       POSTGRES_USER: ${DB_USER:-root}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-root}
@@ -26,10 +12,30 @@ services:
       - postgres:/data/postgres/project
     ports:
       - "5432:5432"
+    expose:
+      - 5432
     restart: unless-stopped
+
+  microservice-projet:
+    image: esgimicroci/al2-projects
+    ports:
+      - "8080:8080"
+    environment:
+      DB_NAME: ${DB_NAME:-microserviceProjet}
+      DB_USER: ${DB_USER:-root}
+      DB_PASSWORD: ${DB_PASSWORD:-root}
+      CONSUL_HOST: http://micro-ci.westus2.cloudapp.azure.com
+      CONSUL_TOKEN: ab8bdda5-2a4a-1ebf-0383-95ccbebe63b4
+      CONSUL_PORT: 40601
+    volumes:
+      - al2projects:/var/projects
+    depends_on:
+      - db
 
 volumes:
   postgres:
+  al2projects:
+    external: true
 
 
 # Add your networks/volumes/services for your microservice
