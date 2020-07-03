@@ -3,17 +3,14 @@ version: '3'
 services:
   db:
     image: postgres
-    network_mode: bridge
     environment:
-      - POSTGRES_PASSWORD=admin
       - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=microserviceProjet
     volumes:
       - postgres:/data/postgres/project
     ports:
       - "5432:5432"
-    expose:
-      - 5432
     restart: unless-stopped
 
   microservice-projet:
