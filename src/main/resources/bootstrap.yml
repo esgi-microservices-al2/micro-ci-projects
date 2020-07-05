@@ -13,3 +13,4 @@ spring:
         service-name: projects-microservice
         hostname: micro-ci-al2.internal.cloudapp.net
         ip-address: 10.0.0.6
+        port: 8080
