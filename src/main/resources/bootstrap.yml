@@ -11,5 +11,4 @@ spring:
         health-check-url: http://10.0.0.6:8080/api/v1/health
         acl-token: ab8bdda5-2a4a-1ebf-0383-95ccbebe63b4
         service-name: projects-microservice
-        hostname: 10.0.0.6
-        include-hostname-in-instance-id: true
+        hostname: 10.0.0.6:8080
