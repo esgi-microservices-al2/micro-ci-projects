@@ -6,7 +6,7 @@ spring:
       host: 10.0.0.5
       port: 40601
       discovery:
-        tags: traefik.enable=true
+        tags: traefik.enable=true, traefik.frontend.entryPoints=http, traefik.frontend.rule=PathPrefixStrip:/api/v1/
         health-check-interval: 10s
         health-check-url: http://10.0.0.6:8080/api/v1/health
         acl-token: ab8bdda5-2a4a-1ebf-0383-95ccbebe63b4
