@@ -10,6 +10,5 @@ spring:
         health-check-interval: 10s
         health-check-url: http://10.0.0.6:8080/api/v1/health
         acl-token: ab8bdda5-2a4a-1ebf-0383-95ccbebe63b4
-        ip-address: micro-ci-al2.internal.cloudapp.net:8080
-        prefer-ip-address: true
         service-name: projects-microservice
+        hostname: micro-ci-al2.internal.cloudapp.net:8080
