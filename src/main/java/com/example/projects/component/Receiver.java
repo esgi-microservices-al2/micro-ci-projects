@@ -59,7 +59,7 @@ public class Receiver {
                 if(response.getStatusCodeValue() == 200){
                     Tools.log(1, "Build generated for project : "+created.get_id());
                 }else{
-                    Tools.log(1, "Build creation failed for project : "+created.get_id());
+                    Tools.log(2, "Build creation failed for project : "+created.get_id());
                 }
             }
         } catch (ParseException e) {
@@ -80,7 +80,7 @@ public class Receiver {
             if(response.getStatusCodeValue() == 200){
                 Tools.log(1, "Build generated for project : "+id);
             }else{
-                Tools.log(1, "Build creation failed for project : "+id);
+                Tools.log(2, "Build creation failed for project : "+id);
             }
         }
     }
