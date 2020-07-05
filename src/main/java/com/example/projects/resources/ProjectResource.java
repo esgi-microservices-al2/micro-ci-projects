@@ -68,7 +68,7 @@ public class ProjectResource {
             Project updatedProject = repository.findById(idProject).orElseThrow(() -> new ProjectNotFoundException(idProject));
             updatedProject.setName(projectUpdate.getName());
             updatedProject.setOwner(projectUpdate.getOwner());
-            updatedProject.setRunner(projectUpdate.getRunner());
+            updatedProject.setDefaultBranch(projectUpdate.getDefaultBranch());
             updatedProject.setUrl(projectUpdate.getUrl());
             repository.save(updatedProject);
 
