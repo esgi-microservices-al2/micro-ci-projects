@@ -12,11 +12,13 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
 
 @Component
@@ -65,5 +67,21 @@ public class Receiver {
             System.exit(0);
         }
         latch.countDown();
+    }
+
+    @RabbitListener(queues = "al2.scheduler")
+    public void receiveBuild(String message) {
+        Long id = Long.parseLong(message);
+        Optional<Project> exists = projectRepository.findById(id);
+        if(!exists.isPresent()){
+            Tools.log(2, "Project id : "+id+" does not exist");
+        }else{
+            ResponseEntity<String> response = buildResource.generateBuild(exists.get());
+            if(response.getStatusCodeValue() == 200){
+                Tools.log(1, "Build generated for project : "+id);
+            }else{
+                Tools.log(1, "Build creation failed for project : "+id);
+            }
+        }
     }
 }
