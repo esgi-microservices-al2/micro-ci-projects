@@ -39,7 +39,7 @@ public class Receiver {
             JSONObject input = (JSONObject) parser.parse(message);
             JSONObject repo = (JSONObject) input.get("repository");
             JSONObject user = (JSONObject) input.get("user");
-            Project exists = projectRepository.findByUrl(input.get("clone_url").toString());
+            Project exists = projectRepository.findByUrl(repo.get("clone_url").toString());
             if(exists != null && exists.getUrl() != null){
                 ResponseEntity<String>  response = buildResource.generateBuild(exists);
                 if(response.getStatusCodeValue() == 200){
