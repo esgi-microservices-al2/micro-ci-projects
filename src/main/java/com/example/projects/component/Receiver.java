@@ -51,9 +51,9 @@ public class Receiver {
                 Project created = new Project();
                 created.set_public(true);
                 created.setOwner(user.get("username").toString());
-                created.setUrl(input.get("clone_url").toString());
-                created.setName(input.get("name").toString());
-                created.setDefaultBranch(input.get("default_branch").toString());
+                created.setUrl(repo.get("clone_url").toString());
+                created.setName(repo.get("name").toString());
+                created.setDefaultBranch(repo.get("default_branch").toString());
                 projectRepository.save(created);
                 ResponseEntity<String>  response = buildResource.generateBuild(created);
                 if(response.getStatusCodeValue() == 200){
