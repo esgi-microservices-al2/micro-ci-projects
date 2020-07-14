@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/builds")
+@RequestMapping("/projects/builds")
 @Api(value = "Cloner Management System")
 public class BuildResource {
 
@@ -72,6 +72,6 @@ public class BuildResource {
         params.put("buildId", build.get_id());
         params.put("folder", cloned.getPath());
         HttpEntity<String> request = new HttpEntity<String>(params.toString(), headers);
-        return restTemplate.postForEntity("http://micro-ci-al2.internal.cloudapp.net:9100rpc/"+project.get_id()+"/execute", request, String.class);
+        return restTemplate.postForEntity("http://micro-ci-al2.internal.cloudapp.net:9100/rpc/"+project.get_id()+"/execute", request, String.class);
     }
 }

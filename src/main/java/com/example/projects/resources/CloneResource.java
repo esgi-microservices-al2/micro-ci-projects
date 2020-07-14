@@ -26,7 +26,7 @@ import java.util.Optional;
 import java.util.concurrent.Executors;
 
 @RestController
-@RequestMapping("/api/v1/clone")
+@RequestMapping("/projects/clone")
 @Api(value = "Cloner Management System")
 public class CloneResource {
 
