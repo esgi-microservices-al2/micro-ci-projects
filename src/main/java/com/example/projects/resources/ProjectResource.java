@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/projects")
+@RequestMapping("/projects")
 @Api(value = "Project Management System")
 public class ProjectResource {
 

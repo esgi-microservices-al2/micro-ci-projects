@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/builds")
+@RequestMapping("/projects/builds")
 @Api(value = "Cloner Management System")
 public class BuildResource {
 
