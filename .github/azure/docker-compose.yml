@@ -11,7 +11,7 @@ services:
       - postgres:/data/postgres/project
     ports:
       - "5432:5432"
-    restart: unless-stopped
+    restart: always
 
   microservice-projet:
     image: esgimicroci/al2-projects
@@ -30,6 +30,7 @@ services:
       - db
     links:
       - db
+    restart: always
 
 volumes:
   postgres:
