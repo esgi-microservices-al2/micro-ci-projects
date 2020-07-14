@@ -32,9 +32,9 @@ public class Project {
     @Column(name = "public")
     private Boolean _public;
 
-    @ApiModelProperty(notes = "The ID of the generated runner for the project CI")
-    @Column(name = "runner")
-    private String runner;
+    @ApiModelProperty(notes = "The default branch")
+    @Column(name = "defaultBranch")
+    private String defaultBranch;
 
     @ApiModelProperty(notes = "The ID of the owner")
     @Column(name = "owner")

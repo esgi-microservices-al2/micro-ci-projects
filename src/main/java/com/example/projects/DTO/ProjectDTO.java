@@ -21,8 +21,8 @@ public class ProjectDTO {
     @ApiModelProperty(notes = "The access right of the repository")
     private Boolean _public;
 
-    @ApiModelProperty(notes = "The ID of the generated runner for the project CI")
-    private String runner;
+    @ApiModelProperty(notes = "The default branch")
+    private String defaultBranch;
 
     @ApiModelProperty(notes = "The ID of the owner")
     private String owner;
