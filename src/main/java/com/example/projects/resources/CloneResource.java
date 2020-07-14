@@ -74,7 +74,7 @@ public class CloneResource {
             Tools.log(1, "Cloning : "+project.getUrl());
             Git.cloneRepository().setURI(project.getUrl()).setDirectory(repo).call();
             clone.setBranch(Git.open(repo).getRepository().getBranch());
-            clone.setPath(repo.getPath());
+            clone.setPath(project.getName()+"-"+project.get_id());
             return clone;
         } catch (GitAPIException | IOException e) {
             e.printStackTrace();
