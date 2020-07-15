@@ -28,6 +28,7 @@ public class ProjectResource {
 
     private final ProjectService projectService;
 
+    @CrossOrigin
     @ApiOperation(value = "Get a specific project", response = List.class)
     @GetMapping("/{idProject}")
     public ResponseEntity<?> getProject(@PathVariable Long idProject){
@@ -45,6 +46,7 @@ public class ProjectResource {
         }
     }
 
+    @CrossOrigin
     @ApiOperation(value = "Get a list of projects", response = List.class)
     @GetMapping("/projects")
     public ResponseEntity<?> getListOfProjects(){
@@ -52,6 +54,7 @@ public class ProjectResource {
         return new ResponseEntity<>(projects, HttpStatus.OK);
     }
 
+    @CrossOrigin
     @ApiOperation(value = "Create a project", response = List.class)
     @PostMapping("/")
     public ResponseEntity<?> createProject(@RequestBody ProjectDTO project){
@@ -61,6 +64,7 @@ public class ProjectResource {
     }
 
 
+    @CrossOrigin
     //@ApiOperation(value = "Update a specific project", response = List.class)
     @PutMapping("/{idProject}")
     public ResponseEntity<?> updateProject(@PathVariable Long idProject, @RequestBody Project projectUpdate){
@@ -79,7 +83,7 @@ public class ProjectResource {
         }
     }
 
-
+    @CrossOrigin
     @ApiOperation(value = "Delete a specific project", response = List.class)
     @DeleteMapping("/{idProject}")
     public ResponseEntity<?> deleteProject(@PathVariable Long idProject){
